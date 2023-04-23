@@ -1,6 +1,10 @@
 # Kronii-s-Clock--Demo-
 A web app that demonstrates kronii's massive clock using basic css styling and JS scripting.
 
+Next todo:
+ - Clock can represent current time
+ - Can set time 
+
 Todo:
  - Clock can represent current time
  - UI for options:
