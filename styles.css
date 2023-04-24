@@ -4,14 +4,42 @@
   --rect-hour-increament: 30px;
   --rect-width: 7px;
   --rect-1-hour-height: 150px;
+
+  --spin-hour-first-angle: 0deg;
+  --spin-hour-final-angle: 360deg;
+
+  --spin-minute-first-angle: 0deg;
+  --spin-minute-final-angle: 360deg;
+
+  --spin-second-first-angle: 0deg;
+  --spin-second-final-angle: 360deg;
+
 }
 
-@keyframes spin {
+@keyframes spin-hour {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(var(--spin-hour-first-angle));
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotate(var(--spin-hour-final-angle));
+  }
+}
+
+@keyframes spin-minute {
+  0% {
+    transform: rotate(var(--spin-minute-first-angle));
+  }
+  100% {
+    transform: rotate(var(--spin-minute-final-angle));
+  }
+}
+
+@keyframes spin-second {
+  0% {
+    transform: rotate(var(--spin-second-first-angle));
+  }
+  100% {
+    transform: rotate(var(--spin-second-final-angle));
   }
 }
 
@@ -47,9 +75,18 @@
   animation-iteration-count: infinite;
 }
 
-.animate--spin {
-  animation-name: spin;
+.animate--spin-hour {
+  animation-name: spin-hour;
 }
+
+.animate--spin-minute {
+  animation-name: spin-minute;
+}
+
+.animate--spin-second {
+  animation-name: spin-second;
+}
+
 
 .hide {
   visibility: hidden;

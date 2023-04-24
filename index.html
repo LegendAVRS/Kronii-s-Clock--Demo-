@@ -6,18 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <title>Document</title>
+    <script src="script.js" type="module" defer></script>
   </head>
   <body>
     <div class="box">
       <div class="clock">
-        <div class="core"></div>
-        <div class="ring"></div>
-        <div class="animate hour hand animate--spin animate--duration-20s animate--iteration-infinite">
+        <div class="core" id="core"></div>
+        <div class="ring" id="ring"></div>
+        <div class="animate hour hand animate--spin-hour animate--duration-20s animate--iteration-infinite" id="hour">
           <div class="rect one"></div>
           <div class="rect two"></div>
           <div class="rect three"></div>
         </div>
-        <div class="animate minute hand animate--spin animate--duration-10s animate--iteration-infinite">
+        <div class="animate minute hand animate--spin-minute animate--duration-10s animate--iteration-infinite" id="minute">
         
           <div class="rect one"></div>
           <div class="rect two"></div>
@@ -25,7 +26,7 @@
           <div class="rect four"></div>
           <div class="rect five"></div>
         </div>
-        <div class="animate second hand animate--spin animate--duration-5s animate--iteration-infinite"></div>
+        <div class="animate second hand animate--spin-second animate--duration-5s animate--iteration-infinite" id="second"></div>
       </div>
     </div>
   </body>
