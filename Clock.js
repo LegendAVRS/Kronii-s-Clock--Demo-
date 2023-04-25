@@ -4,8 +4,8 @@ class Clock {
     this.minute = minute;
     this.second = second;
 
-    // Sets update period to n seconds
-    this.interval = 1;
+    // Sets update period to n miliseconds
+    this.interval = 1000;
 
     // Sets CSS clock element values
     this.clock = clock;
@@ -31,21 +31,15 @@ class Clock {
           break;
       }
     });
-
-    // Sets time object
-    this.timeObject = new Date();
   }
 
   // Pauses or continues the clock
   activateClock = (event) => {
-    let animationPlayValue = "paused";
     if (this.isRunning) {
-      animationPlayValue = "running";
+      this.stopClock();
+    } else {
+      this.continueClock();
     }
-
-    this.hourHand.style.animationPlayState = animationPlayValue;
-    this.minuteHand.style.animationPlayState = animationPlayValue;
-    this.secondHand.style.animationPlayState = animationPlayValue;
 
     this.isRunning = !this.isRunning;
   };
@@ -54,18 +48,15 @@ class Clock {
     this.hourHand.style.animationPlayState = "paused";
     this.minuteHand.style.animationPlayState = "paused";
     this.secondHand.style.animationPlayState = "paused";
-  }
-
-  // Sets the clock's time to the given values
-  setTime = (hour, minute, second) => {
-    this.hour = this.timeObject.getHours();
-    this.minute = this.timeObject.getMinutes();
-    this.second = this.timeObject.getSeconds();
-
-    this.drawInitialTime();
   };
 
-  drawHand = (cssVarFirst, cssVarSecond, angle) => {
+  continueClock = () => {
+    this.hourHand.style.animationPlayState = "running";
+    this.minuteHand.style.animationPlayState = "running";
+    this.secondHand.style.animationPlayState = "running";
+  };
+
+  setCurrentHands = (cssVarFirst, cssVarSecond, angle) => {
     document.documentElement.style.setProperty(cssVarFirst, `${angle}deg`);
     document.documentElement.style.setProperty(
       cssVarSecond,
@@ -73,43 +64,41 @@ class Clock {
     );
   };
 
-  // Sets the initial positions of the clock's hands
-  drawInitialTime = () => {
-    this.drawHand(
-      "--spin-minute-first-angle",
-      "--spin-minute-final-angle",
-      this.#convertSecondToAngle(this.minute)
-    );
-    
-    this.drawHand(
-      "--spin-hour-first-angle",
-      "--spin-hour-final-angle",
-      this.#convertHourToAngle(this.hour)
-    );
-    
-    this.drawHand(
-      "--spin-second-first-angle",
-      "--spin-second-final-angle",
-      this.#convertSecondToAngle(this.second)
-    );
-
+  rotateHands = (element, angle) => {
+    element.style.setProperty('--angle', `${angle}deg`);
   };
 
-  // Updates the current time with after a set interval
-  updateTime = () => {};
+  // Updates the current time after a set interval
+  updateTime =  () => {
+      let currentDate = new Date();
+      this.second = currentDate.getSeconds() + currentDate.getMilliseconds() / 1000;
+      this.minute = currentDate.getMinutes() + this.second / 60;
+      this.hour = currentDate.getHours() + this.minute / 60;
+      this.rotateHands(this.secondHand, this.#convertSecondToAngle(this.second));
+      this.rotateHands(this.minuteHand, this.#convertMinuteToAngle(this.minute));
+      this.rotateHands(this.hourHand, this.#convertHourToAngle(this.hour)); 
+  };
 
   // Returns the angle of the respective time
   #convertSecondToAngle = (seconds) => {
-    return (seconds % 60) * (360 / 60);
+    return seconds * (360 / 60);
   };
 
   #convertMinuteToAngle = (minutes) => {
-    return (minutes % 60) * (360 / 60);
+    return minutes * (360 / 60);
   };
 
   #convertHourToAngle = (hours) => {
-    return(hours % 60) * (360 / 12);
+    return hours * (360 / 12);
   };
+
+  #secondToMinuteOffset = (seconds) => {
+    return (seconds % 60) * (6 / 60);
+  }
+
+  #minuteToHourOffset = (minutes) => {
+    return (minutes % 60) * (6 / 12);
+  }
 }
 
 export default Clock;

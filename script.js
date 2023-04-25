@@ -1,7 +1,8 @@
 import Clock from "./Clock.js"
 
-let myClock = new Clock(1, 1, 1, document.querySelector(".clock"));
+let myClock = new Clock(1, 1, 30, document.querySelector(".clock"));
 
-console.log(myClock);
-myClock.setTime();
-myClock.stopClock();
+setInterval(myClock.updateTime, 1);
+myClock.updateTime();
+// myClock.stopClock();
+
