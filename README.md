@@ -15,3 +15,5 @@ Todo:
  - Improve UI:
     + Change backgournd
     + Add effects
+
+Demo site: https://legendavrs.github.io/Kronii-s-Clock--Demo-/
