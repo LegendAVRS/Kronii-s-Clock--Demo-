@@ -4,29 +4,61 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="clock.css" />
+    <link rel="stylesheet" href="options.css" />
+    <link rel="stylesheet" href="main.css" />
     <title>Document</title>
     <script src="script.js" type="module" defer></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js" defer></script>
   </head>
   <body>
-    <div class="box">
-      <div class="clock">
-        <div class="core" id="core"></div>
-        <div class="ring" id="ring"></div>
-        <div class="hour hand" id="hour">
-          <div class="rect one"></div>
-          <div class="rect two"></div>
-          <div class="rect three"></div>
+    <!-- CLock -->
+    <div class="overall-box">
+      <div class="box">
+        <div class="clock">
+          <div class="core" id="core"></div>
+          <div class="ring" id="ring"></div>
+          <div class="hour hand" id="hour">
+            <div class="rect one"></div>
+            <div class="rect two"></div>
+            <div class="rect three"></div>
+          </div>
+          <div class="minute hand" id="minute">
+            <div class="rect one"></div>
+            <div class="rect two"></div>
+            <div class="rect three"></div>
+            <div class="rect four"></div>
+            <div class="rect five"></div>
+          </div>
+          <div class="second hand" id="second"></div>
         </div>
-        <div class="minute hand" id="minute">
-        
-          <div class="rect one"></div>
-          <div class="rect two"></div>
-          <div class="rect three"></div>
-          <div class="rect four"></div>
-          <div class="rect five"></div>
+        <div class="time-label-box" id="time-label-box">23:30:30</div>
+      </div>
+
+      <!-- Options bar -->
+      <div class="setting-bar">
+        <box-icon name="chevron-left" id="setting-icon"></box-icon>
+
+        <div class="title-container">
+          <span class="setting-title" id="setting-title">Settings</span>
         </div>
-        <div class="second hand" id="second"></div>
+
+        <div class="time-container">
+          <input type="number" class="time-input" id="input-hour" />
+          <input type="number" class="time-input" id="input-minute" />
+          <input type="number" class="time-input" id="input-second" />
+        </div>
+        <div class="button-container">
+          <button class="input-button" id="set-button">Set</button>
+          <button class="input-button" id="pause-button">Pause</button>
+          <button class="input-button" id="reset-button">Reset</button>
+        </div>
+        <div class="checkbox-container">
+          <label><input type="checkbox" class="input-checkbox" id="check-bgm"/>BGM</label>
+          <label><input type="checkbox" class="input-checkbox" id="check-sfx"/>SFX</label>
+          <label><input type="checkbox" class="input-checkbox" id="check-smooth"/>Smooth</label>
+          <label><input type="checkbox" class="input-checkbox" id="check-show"/>Show time</label>
+        </div>
       </div>
     </div>
   </body>

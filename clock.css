@@ -1,96 +1,19 @@
 :root {
-  --core-diameter: 100px;
-  --ring-diameter: 300px;
+  --core-diameter: 150px;
+  --ring-diameter: 400px;
   --rect-hour-increament: 30px;
   --rect-width: 7px;
   --rect-1-hour-height: 150px;
 
-  --spin-hour-first-angle: 0deg;
-  --spin-hour-final-angle: 360deg;
-
-  --spin-minute-first-angle: 0deg;
-  --spin-minute-final-angle: 360deg;
-
-  --spin-second-first-angle: 0deg;
-  --spin-second-final-angle: 360deg;
-
-}
-
-@keyframes spin-hour {
-  0% {
-    transform: rotate(var(--spin-hour-first-angle));
-  }
-  100% {
-    transform: rotate(var(--spin-hour-final-angle));
-  }
-}
-
-@keyframes spin-minute {
-  0% {
-    transform: rotate(var(--spin-minute-first-angle));
-  }
-  100% {
-    transform: rotate(var(--spin-minute-final-angle));
-  }
-}
-
-@keyframes spin-second {
-  0% {
-    transform: rotate(var(--spin-second-first-angle));
-  }
-  100% {
-    transform: rotate(var(--spin-second-final-angle));
-  }
+  --rect-hour-cell-height: 40px;
+  --rect-minute-cell-height: 50px;
+  --second-hand-height: 430px;
 }
 
 * {
-  animation-play-state: paused;
   box-sizing: border-box;
 }
 
-.animate {
-  animation-direction: normal;
-  animation-fill-mode: forwards;
-  animation-timing-function: linear;
-  animation-play-state: running;
-}
-
-
-.animate--duration-5s {
-  animation-duration: 5s;
-}
-
-.animate--duration-1s {
-  animation-duration: 10s;
-}
-
-.animate--duration-10s {
-  animation-duration: 10s;
-}
-
-.animate--duration-20s {
-  animation-duration: 20s;
-}
-
-.animate--duration-60s {
-  animation-duration: 60s;
-}
-
-.animate--iteration-infinite {
-  animation-iteration-count: infinite;
-}
-
-.animate--spin-hour {
-  animation-name: spin-hour;
-}
-
-.animate--spin-minute {
-  animation-name: spin-minute;
-}
-
-.animate--spin-second {
-  animation-name: spin-second;
-}
 
 
 .hide {
@@ -103,10 +26,12 @@ body {
 }
 
 .box {
-  height: 100vh;
+  height: 100%;
+  width: 100%;
   background-color: inherit;
   display: grid;
   align-items: center;
+  position: relative;
 }
 
 .clock {
@@ -158,9 +83,9 @@ body {
 
 .clock > .minute {
   position: absolute;
-  top: calc(-50% + var(--ring-diameter) - (8 * 35px));
+  top: calc(-50% + var(--ring-diameter) - (8 * var(--rect-minute-cell-height)));
   transform-origin: bottom center;
-  grid-template-rows: repeat(8, 35px);
+  grid-template-rows: repeat(8, var(--rect-minute-cell-height));
   grid-template-columns: repeat(5, var(--rect-width));
 }
 
@@ -192,8 +117,8 @@ body {
 .clock > .hour {
   position: absolute;
   top: -30%;
-  top: calc(-50% + var(--ring-diameter) - (8 * 30px));
-  grid-template-rows: repeat(8, 30px);
+  top: calc(-50% + var(--ring-diameter) - (8 * var(--rect-hour-cell-height)));
+  grid-template-rows: repeat(8, var(--rect-hour-cell-height));
   grid-template-columns: repeat(3, var(--rect-width));
   transform-origin: center bottom;
   transform: rotate(90deg);
@@ -213,10 +138,10 @@ body {
 
 .clock > .second {
   position: absolute;
-  top: calc(-50% - 20px);
+  top: calc(-50% - calc(var(--second-hand-height) - var(--ring-diameter)));
   transform-origin: bottom center;
   width: var(--rect-width);
-  height: 320px;
+  height: var(--second-hand-height);
   background-color: hsl(60, 75%, 50%);
   transform: rotate(120deg);
 }
@@ -224,4 +149,13 @@ body {
 .clock > .core,
 .clock > .ring {
   border-radius: 100%;
+}
+
+
+.time-label-box {
+  position: absolute;
+  font-size: 3rem;
+  left:calc(50% - 1.8 * 3rem);
+  top:80%; 
+  color: white;
 }

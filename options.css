@@ -1,0 +1,139 @@
+/* Initial values */
+
+@import url("https://fonts.googleapis.com/css2?family=Poltawski+Nowy:ital,wght@0,400;0,600;0,700;1,400&family=Taviraj:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+:root {
+  --hue: 30;
+  --hueComplement: calc(var(--hue) + 180);
+  --hueRightAnalogous: calc(var(--hue) + 30);
+  --hueLeftAnalogous: calc(var(--hue) - 30);
+
+  --primaryDark500: #3F3AC5;
+  --primaryDark600: hsl(var(--hue) 50% 50%);
+  --secondaryLight500: #C0C53A;
+  --secondaryLight900: #C0C53A;
+
+  --accentV1: #3A7AC5;
+  --accentV2: #6662D0;
+
+  --transition-fade-items: ease 0.3s;
+  --transition-fade-bar: ease 0.5s
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 20px;
+  width: 100vw;
+  height: 100vh;
+  color: var(--secondaryLight500);
+  font-family: "Taviraj", serif;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+}
+
+/* Setting bar */
+.setting-bar {
+  width: 25%;
+  height: 100%;
+  background-color: var(--primaryDark500);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: var(--transition-fade-bar);
+}
+
+.setting-bar *{
+  transition: var(--transition-fade-items);
+}
+
+/* Title */
+.setting-title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.title-container {
+  width: 100%;
+  text-align: center;
+}
+
+/* Time container */
+
+.time-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: 10px;
+}
+
+.time-input {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* Button contaienr */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  width: 100%;
+}
+
+.input-button {
+  width: 10rem;
+  height: 1.5rem;
+  margin: 3px;
+  font-family: inherit;
+  font-weight: 800;
+  background-color: var(--accentV1);
+  color: var(--secondaryLight500);
+  border-radius: 5%;
+}
+
+/* Checkbox container */
+.checkbox-container {
+  margin: 10px;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+label {
+  margin: 0;
+}
+
+/* Setting icon */
+#setting-icon {
+  background-color: var(--accentV2);
+  border-radius: 100%;
+  width: 2rem;
+  height: 2rem;
+  position: relative;
+
+  top: 50%;
+  left: calc(-50%);
+}
+
+/* Close values */
+
+.setting-bar.close {
+  width: 0%;
+}
+
+.setting-bar.close :not(#setting-icon) {
+  width: 0%;
+  opacity: 0;
+}
+
+.setting-bar.close #setting-icon {
+  visibility: hidden;
+}
